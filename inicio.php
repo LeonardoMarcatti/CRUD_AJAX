@@ -32,7 +32,7 @@
             <table class="table table-sm col-md-9 table-hover table-bordered table-striped">
                 <thead class="thead-dark text-center">
                     <tr>
-                        <th class="">ID</th>
+                        <th>ID</th>
                         <th>Produto</th>
                         <th>Categoria</th>
                         <th>Editar</th>
@@ -41,8 +41,7 @@
                 </thead>
                 <tbody id="mybody"></tbody>
             </table>
-        </div>
-        
+        </div>        
         <!-- Modal -->
         <div class="modal fade" id="delmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
