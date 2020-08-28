@@ -1,13 +1,16 @@
 <?php
     require('conection.php');
     if(isset($_POST["produto"])) {
-        $produto = $_POST["produto"];
-        $categoria = $_POST['categoria'];
+        $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_STRING);
+        $categoria = filter_input(INPUT_POST, 'categoria', FILTER_SANITIZE_NUMBER_INT);
         
-        $sql = "INSERT INTO produto(nome, idcategoria) VALUES('$produto', $categoria)";
+        $sql = "INSERT INTO produto(nome, idcategoria) VALUES(:produto, :categoria)";
 
         $retorno = array();
-        $insere = $conection->query($sql);
+        $insere = $conection->prepare($sql);
+        $insere->bindParam(':produto', $produto);
+        $insere->bindParam(':categoria', $categoria);
+        $insere->execute();
         if ($insere) {
            $retorno["sucesso"] = true;
            $retorno["mensagem"] = 'Inserido com sucesso';

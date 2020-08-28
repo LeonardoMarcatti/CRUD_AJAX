@@ -1,10 +1,11 @@
 <?php
     require('conection.php');
 
-    $sql = "select * from categoria order by id";    
-    $r = $conection->query($sql, PDO::FETCH_ASSOC);   
+    $sql = "select * from categoria order by id";
+    $result = $conection->prepare($sql);
+    $result->execute();
     $id = array();
-    foreach ($r as $key => $value) {
+    foreach ($result as $key => $value) {
         $id[$key] = $value;
     };
     echo 'GetCategorias(' . json_encode($id) . ')';

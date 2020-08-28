@@ -19,8 +19,7 @@ function Submit(dados) {
        data: dados.serialize(),
        url: "inserir_produto.php",
        beforeSend:  () => {console.log(dados.serialize())},   
-       success: (e) => { let sucesso = $.parseJSON(e)["sucesso"];
-                         let mensagem = $.parseJSON(e)["mensagem"];
+       success: (e) => { let mensagem = $.parseJSON(e)["mensagem"];
                          window.location.reload();
                          alert(mensagem);                         
                         },
