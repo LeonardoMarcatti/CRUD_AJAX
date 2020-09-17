@@ -10,16 +10,15 @@
         $insere = $conection->prepare($sql);
         $insere->bindParam(':produto', $produto);
         $insere->bindParam(':categoria', $categoria);
-        $insere->execute();
-        if ($insere) {
-           $retorno["sucesso"] = true;
+        $result = $insere->execute();
+        if ($result) {
            $retorno["mensagem"] = 'Inserido com sucesso';
         } else {
-            $retorno["sucesso"] = false;
             $retorno["mensagem"] = "Erro na Inserção!";
         };
         echo json_encode($retorno);
     } else {
         header('location: inicio.php');
-     };
+        exit;
+    };
 ?>

@@ -9,8 +9,26 @@ function GetCategorias(data) {
 
  $('#myform').submit(function(e) {
     e.preventDefault();
-    Submit($(this));              
+    Submit($(this));
 });
+
+
+/*$.getJSON("select.php").done((data)=>{
+    data.forEach(element => {
+        console.log(element.nome);
+    });
+})
+
+$.ajax({
+    type: "get",
+    url: "select.php",
+    success: function (response) {
+        let a = $.parseJSON(response);
+        a.forEach(element => {
+            console.log(element.id);   
+        });
+    }
+});*/
 
 //Envia as informações para o backend fazer a inclusão de novo item.
 function Submit(dados) {
@@ -18,13 +36,13 @@ function Submit(dados) {
        type: "POST",
        data: dados.serialize(),
        url: "inserir_produto.php",
-       beforeSend:  () => {console.log(dados.serialize())},   
+       beforeSend:  () => {console.log(dados.serialize())},
        success: (e) => { let mensagem = $.parseJSON(e)["mensagem"];
                          window.location.reload();
-                         alert(mensagem);                         
+                         alert(mensagem);
                         },
        error:  (e) => { console.log("Erro no sistema.")},
-       complete: (e) => $('#myform')[0].reset()
+       complete: (e) => console.table(e)
    });
 };
 
@@ -87,17 +105,18 @@ $(document).ready(function(param){
     success: response => {
         let produtos
         $.each($.parseJSON(response), (key, value) => {
-                produtos += "<tr><td class=\"text-center\">" + value.id + "</td><td>" + value.nome + "</td><td>" +value.categoria+"</td><td class=\"text-center\"><a href=\"edit_form.php?nome="+value.nome + '&idcategoria='+value.idcategoria +'&id='+value.id+ "\" class=\"edit\" title=\"Editar\"><i class=\"fas fa-pencil-alt\"></i></a></td><td class=\"text-center\"><a href=\"\" class=\"delete\" title=\"" + value.id + "\" data-toggle=\"modal\" data-target=\"#delmodal\"><i class=\"fas fa-trash-alt\"></i></a></td></tr>";
+            produtos += "<tr><td class=\"text-center\">" + value.id + "</td><td>" + value.nome + "</td><td>" +value.categoria+"</td><td class=\"text-center\"><a href=\"edit_form.php?nome="+value.nome + '&idcategoria='+value.idcategoria +'&id='+value.id+ "\" class=\"edit\" title=\"Editar\"><i class=\"fas fa-pencil-alt\" id=\"edit\"></i></a></td><td class=\"text-center\"><a href=\"\" class=\"delete\" title=\"" + value.id + "\" data-toggle=\"modal\" data-target=\"#delmodal\"><i class=\"fas fa-trash-alt\" id=\"del\"></i></a></td></tr>";
         })
         $('#mybody').html(produtos);
         },
     error: (e) => {alert(e)},
-    complete: e => console.log()    
+    complete: e => console.log('OK')
 });
 
-$('#mybody').click(e => {   let valor, nome;
-                            valor = e.target.parentNode.title;
-                            nome = e.target.parentNode.parentNode.parentNode.children[1].innerText;
-                            $('#deletar').attr('value', valor);
-                            $('.modal-body').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);                       
-                        });
+$('#mybody').click(e => {
+    let valor, nome;
+    valor = e.target.parentNode.title;
+    nome = e.target.parentNode.parentNode.parentNode.children[1].innerText;
+    $('#deletar').attr('value', valor);
+    $('.modal-body').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);
+});

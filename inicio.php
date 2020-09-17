@@ -1,5 +1,5 @@
 <?php
-    setlocale(LC_ALL, "pt_BR.utf-8");    
+    setlocale(LC_ALL, "pt_BR.utf-8");
 ?>
 
 <!DOCTYPE html>
