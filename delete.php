@@ -2,16 +2,11 @@
     require('conection.php');
 
     if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-        $sql = "delete from produto where id = '$id'";
-        $result = $conection->query($sql);
-        if ($result) {
-            $retorno["sucesso"] = true;
-            $retorno["mensagem"] = "Exclusão efetuada com sucesso!";
-        } else {
-            $retorno["sucesso"] = false;
-            $retorno["mensagem"] = "Falha na exclusão!";
-        };        
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $sql = "delete from produto where id = :id";
+        $delete = $conection->prepare($sql);
+        $delete->bindParam(':id', $id);
+        $delete->execute();
     };
 
     echo json_encode($retorno); 
