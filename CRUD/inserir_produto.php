@@ -1,6 +1,6 @@
 <?php
     require('conection.php');
-    require('classes/Produto.php');
+    require('classe/Produto.php');
 
     if(isset($_POST["produto"])) {
         $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_STRING);

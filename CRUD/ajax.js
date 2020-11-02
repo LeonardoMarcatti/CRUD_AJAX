@@ -7,28 +7,11 @@ function GetCategorias(data) {
     $('#categoria').html(categorias);
  };
 
- $('#myform').submit(function(e) {
+$('#myform').submit(function(e) {
     e.preventDefault();
     Submit($(this));
 });
 
-
-/*$.getJSON("select.php").done((data)=>{
-    data.forEach(element => {
-        console.log(element.nome);
-    });
-})
-
-$.ajax({
-    type: "get",
-    url: "select.php",
-    success: function (response) {
-        let a = $.parseJSON(response);
-        a.forEach(element => {
-            console.log(element.id);   
-        });
-    }
-});*/
 
 //Envia as informações para o backend fazer a inclusão de novo item.
 function Submit(dados) {

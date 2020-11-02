@@ -20,7 +20,6 @@
 
                 $result["mensagem"] = "Erro na edição!";
             };
-    
             echo json_encode($result);
         };
 ?>
