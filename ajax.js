@@ -36,13 +36,13 @@ function Submit(dados) {
        type: "POST",
        data: dados.serialize(),
        url: "inserir_produto.php",
-       beforeSend:  () => {console.log(dados.serialize())},
+       beforeSend:  () => {/*console.log(dados.serialize())*/},
        success: (e) => { let mensagem = $.parseJSON(e)["mensagem"];
                          loadList();
                          alert(mensagem);
                         },
        error:  (e) => { console.log("Erro no sistema.")},
-       complete: (e) => console.table(e)
+       complete: (e) => $('#produto').val('')
    });
 };
 
@@ -98,7 +98,7 @@ $(document).ready(function(param){
             $('#mybody').html(produtos);
             },
         error: (e) => {alert(e)},
-        complete: e => console.log('OK')
+        complete: e => console.log()
     });
  };
 
