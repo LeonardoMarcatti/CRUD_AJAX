@@ -24,13 +24,17 @@
 }
 
 #del:hover{
+    color: red;
+}
+
+#del{
     color: darkred;
 }
 
 #edit:hover{
-    color: blue;
+    color: rgb(172, 172, 0);
 }
 
 #edit{
-    color: black;
+    color: rgb(70, 70, 62);
 }

@@ -7,6 +7,7 @@ function GetCategorias(data) {
     $('#categoria').html(categorias);
  };
 
+<<<<<<< HEAD:ajax.js
 
 /*
 $.getJSON("select.php").done((data)=>{
@@ -26,6 +27,13 @@ $.ajax({
     }
 });
 */
+=======
+$('#myform').submit(function(e) {
+    e.preventDefault();
+    Submit($(this));
+});
+
+>>>>>>> 9e363b9cb66d9ddb98b1cf2165f2419b54cf85b7:CRUD/ajax.js
 
 //Envia as informações para o backend fazer a inclusão de novo item.
 
@@ -45,7 +53,11 @@ function Submit(dados) {
                          alert(mensagem);
                         },
        error:  (e) => { console.log("Erro no sistema.")},
+<<<<<<< HEAD:ajax.js
        complete: (e) => $('#produto').val('')
+=======
+       complete: () => document.querySelector('#myform').reset()
+>>>>>>> 9e363b9cb66d9ddb98b1cf2165f2419b54cf85b7:CRUD/ajax.js
    });
 };
 
@@ -64,35 +76,40 @@ function Alterar(dados) {
         beforeSend:  e => console.log(dados.serialize()),
         success: (e) => {   let mensagem = $.parseJSON(e)['mensagem'];
                             alert(mensagem);
-                            window.location.href = "https://192.168.1.160/programacao/testes/Projetos/AJAX/inicio.php";
+                            window.location.href = "https://192.168.1.160/programacao/testes/Projetos/AJAX/CRUD/inicio.php";
         },
         error: (e) =>{ alert("Erro no sistema!");}
     });
 };
 
-$(document).ready(function(param){ 
-    $('#deletar').on('click', function(e){
-        let id = $(this).attr('value');
-        let cl = $(this).attr('class');
-        if (cl == 'btn btn-danger') {
-            $.ajax({
-            type: "post",
-            url: "delete.php",
-            data: "id=" + id,
-            beforeSend: e => console.log(id),
-            success: e => { loadList(); },
-            error: e => alert('Erro de sistema!')
-           });
-        };
-     });
- });
+
+$('#deletar').on('click', function(e){
+    let id = $(this).attr('value');
+    let cl = $(this).attr('class');
+    if (cl == 'btn btn-danger') {
+        $.ajax({
+        type: "post",
+        url: "delete.php",
+        data: "id=" + id,
+        beforeSend: e => {},
+        success: e => {loadList(); console.log('Deletado item: ' + id);},
+        error: e => alert('Erro de sistema!')
+        });
+    };
+});
+
 
  //Função que pega a lista de itens já cadastrados. Essa função é chamada ao carregar a página
  function loadList() {
     $.ajax({
         type: "get",
+<<<<<<< HEAD:ajax.js
         url: "https://192.168.1.160/programacao/testes/Projetos/AJAX/select_lista.php",
         data: null,
+=======
+        url: "https://192.168.1.160/programacao/testes/Projetos/AJAX/CRUD/select_lista.php",
+        //data: null,
+>>>>>>> 9e363b9cb66d9ddb98b1cf2165f2419b54cf85b7:CRUD/ajax.js
         success: response => {
             let produtos
             $.each($.parseJSON(response), (key, value) => {
@@ -101,7 +118,7 @@ $(document).ready(function(param){
             $('#mybody').html(produtos);
             },
         error: (e) => {alert(e)},
-        complete: e => console.log('OK')
+        complete: e => {}
     });
  };
 
@@ -112,5 +129,5 @@ $('#mybody').click(e => {
     valor = e.target.parentNode.title;
     nome = e.target.parentNode.parentNode.parentNode.children[1].innerText;
     $('#deletar').attr('value', valor);
-    $('.modal-body').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);
+    $('.modal-body p').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);
 });

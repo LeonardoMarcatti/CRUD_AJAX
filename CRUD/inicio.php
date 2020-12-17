@@ -53,6 +53,10 @@
                 </button>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD:inicio.php
+=======
+                <p></p>
+>>>>>>> 9e363b9cb66d9ddb98b1cf2165f2419b54cf85b7:CRUD/inicio.php
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
@@ -66,6 +70,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/ec29234e56.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="ajax.js"></script>
-        <script src="https://192.168.1.160/programacao/testes/Projetos/AJAX/select.php"></script>
+        <script src="https://192.168.1.160/programacao/testes/Projetos/AJAX/CRUD/select.php"></script>
     </body>
 </html>
