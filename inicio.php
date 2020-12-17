@@ -17,7 +17,7 @@
             <form action="" method="post" enctype="multipart/form-data" id="myform">
                 <div class="form-group row">
                     <label for="produto">Insira produto:</label>
-                    <input type="text" name="produto" id="produto" class="form-control" required="">
+                    <input type="text" name="produto" id="produto" class="form-control" required="" placeholder="Inserir produto">
                 </div>
                 <div class="form-group row">
                     <label for="categoria">Categoria:</label>
@@ -53,7 +53,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p> Deseja mesmo deletar o item </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>

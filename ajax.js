@@ -7,13 +7,9 @@ function GetCategorias(data) {
     $('#categoria').html(categorias);
  };
 
- $('#myform').submit(function(e) {
-    e.preventDefault();
-    Submit($(this));
-});
 
-
-/*$.getJSON("select.php").done((data)=>{
+/*
+$.getJSON("select.php").done((data)=>{
     data.forEach(element => {
         console.log(element.nome);
     });
@@ -28,9 +24,16 @@ $.ajax({
             console.log(element.id);   
         });
     }
-});*/
+});
+*/
 
 //Envia as informações para o backend fazer a inclusão de novo item.
+
+$('#myform').submit(function(e) {
+    e.preventDefault();
+    Submit($(this));
+});
+
 function Submit(dados) {
    $.ajax({
        type: "POST",
@@ -42,7 +45,7 @@ function Submit(dados) {
                          alert(mensagem);
                         },
        error:  (e) => { console.log("Erro no sistema.")},
-       complete: (e) => console.table(e)
+       complete: (e) => $('#produto').val('')
    });
 };
 
@@ -89,7 +92,7 @@ $(document).ready(function(param){
     $.ajax({
         type: "get",
         url: "https://192.168.1.160/programacao/testes/Projetos/AJAX/select_lista.php",
-        //data: null,
+        data: null,
         success: response => {
             let produtos
             $.each($.parseJSON(response), (key, value) => {

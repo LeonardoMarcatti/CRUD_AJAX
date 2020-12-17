@@ -8,6 +8,4 @@
         $delete->bindParam(':id', $id);
         $delete->execute();
     };
-
-    echo json_encode($retorno); 
 ?>

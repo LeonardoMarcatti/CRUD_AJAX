@@ -7,6 +7,7 @@
     $select->execute();
     $result = $select->fetchAll(pdo::FETCH_ASSOC);
     $array = array();
+    
     foreach ($result as $key => $value) {
         $array = $value;
     };
