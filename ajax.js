@@ -3,9 +3,14 @@ function GetCategorias(data) {
     let categorias;
     $.each(data, (key, value) => {
         categorias += '<option value="' + value.id + '">' + value.nome + '</option>';
-    });
+        }
+    );
+
+
     $('#categoria').html(categorias);
  };
+
+
 
  $('#myform').submit(function(e) {
     e.preventDefault();
@@ -13,30 +18,13 @@ function GetCategorias(data) {
 });
 
 
-/*$.getJSON("select.php").done((data)=>{
-    data.forEach(element => {
-        console.log(element.nome);
-    });
-})
-
-$.ajax({
-    type: "get",
-    url: "select.php",
-    success: function (response) {
-        let a = $.parseJSON(response);
-        a.forEach(element => {
-            console.log(element.id);   
-        });
-    }
-});*/
-
 //Envia as informações para o backend fazer a inclusão de novo item.
 function Submit(dados) {
    $.ajax({
        type: "POST",
        data: dados.serialize(),
        url: "inserir_produto.php",
-       beforeSend:  () => {/*console.log(dados.serialize())*/},
+       beforeSend:  () => {console.log(dados.serialize())},
        success: (e) => { let mensagem = $.parseJSON(e)["mensagem"];
                          loadList();
                          alert(mensagem);
@@ -61,7 +49,7 @@ function Alterar(dados) {
         beforeSend:  e => console.log(dados.serialize()),
         success: (e) => {   let mensagem = $.parseJSON(e)['mensagem'];
                             alert(mensagem);
-                            window.location.href = "https://192.168.1.160/programacao/testes/Projetos/AJAX/inicio.php";
+                            window.location.href = "inicio.php";
         },
         error: (e) =>{ alert("Erro no sistema!");}
     });
@@ -85,14 +73,15 @@ $(document).ready(function(param){
  });
 
  //Função que pega a lista de itens já cadastrados. Essa função é chamada ao carregar a página
+ //Quando usamos ajax para pegar um json, precisamos tratá-lo com JSON.parse(valor)
  function loadList() {
     $.ajax({
         type: "get",
-        url: "https://192.168.1.160/programacao/testes/Projetos/AJAX/select_lista.php",
+        url: "select_lista.php",
         //data: null,
         success: response => {
             let produtos
-            $.each($.parseJSON(response), (key, value) => {
+            $.each(JSON.parse(response), (key, value) => {
                 produtos += "<tr><td class=\"text-center\">" + value.id + "</td><td>" + value.nome + "</td><td>" +value.categoria+"</td><td class=\"text-center\"><a href=\"edit_form.php?nome="+value.nome + '&idcategoria='+value.idcategoria +'&id='+value.id+ "\" class=\"edit\" title=\"Editar\"><i class=\"fas fa-pencil-alt\" id=\"edit\"></i></a></td><td class=\"text-center\"><a href=\"\" class=\"delete\" title=\"" + value.id + "\" data-toggle=\"modal\" data-target=\"#delmodal\"><i class=\"fas fa-trash-alt\" id=\"del\"></i></a></td></tr>";
             })
             $('#mybody').html(produtos);
@@ -103,6 +92,23 @@ $(document).ready(function(param){
  };
 
  loadList();
+
+ /*$.getJSON("select_lista.php").done((data)=>{
+    data.forEach(element => {
+        console.log(element.nome);
+    });
+})
+
+$.ajax({
+    type: "get",
+    url: "select_lista.php",
+    success: function (response) {
+        let a = $.parseJSON(response);
+        a.forEach(element => {
+            console.log(element.id);   
+        });
+    }
+});*/
 
 $('#mybody').click(e => {
     let valor, nome;

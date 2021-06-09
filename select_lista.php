@@ -1,4 +1,5 @@
 <?php
+    setlocale(LC_ALL, "pt_BR.utf-8");
     require('conection.php');
 
     $sql = "select p.id as 'id', p.nome as 'nome', c.nome as 'categoria', c.id as 'idcategoria' from produto p join categoria c on p.idcategoria = c.id order by p.id";
@@ -8,7 +9,7 @@
     $result = $select->fetchAll(pdo::FETCH_ASSOC);
     $array = array();
     foreach ($result as $key => $value) {
-        $array = $value;
+        $array[] = $value;
     };
 
     echo json_encode($result);
