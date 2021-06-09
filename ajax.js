@@ -93,23 +93,6 @@ $(document).ready(function(param){
 
  loadList();
 
- /*$.getJSON("select_lista.php").done((data)=>{
-    data.forEach(element => {
-        console.log(element.nome);
-    });
-})
-
-$.ajax({
-    type: "get",
-    url: "select_lista.php",
-    success: function (response) {
-        let a = $.parseJSON(response);
-        a.forEach(element => {
-            console.log(element.id);   
-        });
-    }
-});*/
-
 $('#mybody').click(e => {
     let valor, nome;
     valor = e.target.parentNode.title;

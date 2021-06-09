@@ -1,6 +1,6 @@
 <?php
 
-    require('conection.php');
+    require_once('conection.php');
 
     $sql = "select * from categoria order by id";
     $select = $conection->prepare($sql);
