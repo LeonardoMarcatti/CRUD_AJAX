@@ -12,5 +12,5 @@
         $array[] = $value;
     };
 
-    echo json_encode($result);
+    echo json_encode($array);
 ?>

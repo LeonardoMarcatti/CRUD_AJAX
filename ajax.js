@@ -10,9 +10,7 @@ function GetCategorias(data) {
     $('#categoria').html(categorias);
  };
 
-
-
- $('#myform').submit(function(e) {
+$('#myform').submit(function(e) {
     e.preventDefault();
     Submit($(this));
 });
@@ -82,7 +80,7 @@ $(document).ready(function(param){
         success: response => {
             let produtos
             $.each(JSON.parse(response), (key, value) => {
-                produtos += "<tr><td class=\"text-center\">" + value.id + "</td><td>" + value.nome + "</td><td>" +value.categoria+"</td><td class=\"text-center\"><a href=\"edit_form.php?nome="+value.nome + '&idcategoria='+value.idcategoria +'&id='+value.id+ "\" class=\"edit\" title=\"Editar\"><i class=\"fas fa-pencil-alt\" id=\"edit\"></i></a></td><td class=\"text-center\"><a href=\"\" class=\"delete\" title=\"" + value.id + "\" data-toggle=\"modal\" data-target=\"#delmodal\"><i class=\"fas fa-trash-alt\" id=\"del\"></i></a></td></tr>";
+                produtos += "<tr><td class=\"text-center\">" + value.id + "</td><td>" + value.nome + "</td><td class=\"text-center\">" +value.categoria+"</td><td class=\"text-center\"><a href=\"edit_form.php?nome="+value.nome + '&idcategoria='+value.idcategoria +'&id='+value.id+ "\" class=\"edit\" title=\"Editar\"><i class=\"fas fa-pencil-alt\" id=\"edit\"></i></a></td><td class=\"text-center\"><a href=\"\" class=\"delete\" title=\"" + value.id + "\" data-bs-toggle=\"modal\" data-bs-target=\"#delmodal\"><i class=\"fas fa-trash-alt\" id=\"del\"></i></a></td></tr>";
             })
             $('#mybody').html(produtos);
             },
@@ -96,7 +94,7 @@ $(document).ready(function(param){
 $('#mybody').click(e => {
     let valor, nome;
     valor = e.target.parentNode.title;
-    nome = e.target.parentNode.parentNode.parentNode.children[1].innerText;
+    nome = e.target.closest('tr').children[1].innerText
     $('#deletar').attr('value', valor);
     $('.modal-body').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);
 });

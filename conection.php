@@ -1,8 +1,10 @@
 <?php
-    $server = 'localhost'; 
+    setlocale(LC_ALL, "pt_BR.utf-8");
+
+    $server = 'localhost'; //ip address
     $DB = 'ajax';
     $user = 'root';
-    $password = '';
+    $password = 'a';
         
     try {
         $conection = new PDO("mysql:host=$server; dbname=$DB", "$user", "$password");
