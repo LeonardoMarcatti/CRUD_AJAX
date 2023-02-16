@@ -20,7 +20,7 @@
 #form{
     background-color: rgba(50, 82, 255, 0.3);
     padding: 30px;
-    height: auto;
+    height: 250px;
 }
 
 #del:hover{

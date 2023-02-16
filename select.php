@@ -13,5 +13,4 @@
     };
 
     echo 'GetCategorias(' . json_encode($id) . ')';
-
-    ?>
+?>
