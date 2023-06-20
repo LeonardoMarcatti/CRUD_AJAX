@@ -10,11 +10,7 @@ function GetCategorias(data) {
     $('#categoria').html(categorias);
  };
 
-<<<<<<< HEAD
- $('#myform').submit(function(e) {
-=======
 $('#myform').submit(function(e) {
->>>>>>> 7e79bec58791ed49a42091f8f95156a271ebfee2
     e.preventDefault();
     Submit($(this));
 });
@@ -25,7 +21,7 @@ function Submit(dados) {
        type: "POST",
        data: dados.serialize(),
        url: "inserir_produto.php",
-    //    beforeSend:  () => {console.log(dados.serialize())},
+       beforeSend:  () => {console.log(dados.serialize())},
        success: (e) => { loadList();},
        error:  (e) => { console.log("Erro no sistema.")},
        complete: (e) => $('#produto').val('')
@@ -95,4 +91,4 @@ $('#mybody').click(e => {
     nome = e.target.closest('tr').children[1].innerText
     $('#deletar').attr('value', valor);
     $('.modal-body').html('Deseja mesmo deletar o item ' + valor + ': ' + nome);
-});
+ })
