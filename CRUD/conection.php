@@ -2,7 +2,7 @@
     $server = 'localhost'; 
     $DB = 'ajax';
     $user = 'leo';
-    $password = 'Aa689311$';
+    $password = 'Aa119539$';
         
     try {
         $conection = new PDO("mysql:host=$server; dbname=$DB", "$user", "$password");

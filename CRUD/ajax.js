@@ -1,5 +1,5 @@
 //Preenche o formulário inicial com as categorias existentes no banco.
-function GetCategorias(data) {
+const GetCategorias = (data) => {
     let categorias;
     $.each(data, (key, value) => {
         categorias += '<option value="' + value.id + '">' + value.nome + '</option>';
